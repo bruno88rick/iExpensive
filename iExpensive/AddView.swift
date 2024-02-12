@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AddView: View {
+    
+    //creating an property wraper for this view to dismiss the view
+    @Environment(\.dismiss) var dismiss
+    
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
@@ -32,6 +36,14 @@ struct AddView: View {
                 
             }
             .navigationTitle("Add new Expense")
+            .toolbar {
+                Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
+                    let item = ExpenseItem(name: name, type: type, amount: amount)
+                    expenses.items.append(item)
+                    dismiss()
+                    //calling dismiss() when we want the view to dismiss itself. This causes the showingAddExpense Boolean in ContentView to go back to false, and hides the AddView.
+                }
+            }
         }
     }
 }
