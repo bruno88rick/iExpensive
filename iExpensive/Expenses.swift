@@ -55,6 +55,17 @@ class Expenses {
                 UserDefaults.standard.set(encoded, forKey: "Items")
             }
         }
-        
     }
+    
+    //to do the filter way of Paul challange (Third challange)
+    
+    /*Computated property to filter personal and business types into a var*/
+    var personalItems: [ExpenseItem] {
+        items.filter { $0.type == "Personal" }
+    }
+    
+    var businessItems: [ExpenseItem] {
+        items.filter {$0.type == "Business"}
+    }
+    
 }

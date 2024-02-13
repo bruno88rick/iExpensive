@@ -22,37 +22,51 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var expenses = Expenses()
-    
     @State private var showingAddExpense = false
+    @State private var showingOtherWaytoFilter = false
     
     var body: some View {
         NavigationStack {
             List {
-                //Becouse our ExpensesItem scruct conforme to Identifiable protocol we no longer need to tell ForEach which property to use for the identifier (\.name) – it knows there will be an id property and that it will be unique, because that’s the point of the Identifiable protocol
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline.bold())
-                            Text(item.type)
-                                .font(.caption)
+                Section ("Business Expenses") {
+                    //Becouse our ExpensesItem scruct conforme to Identifiable protocol we no longer need to tell ForEach which property to use for the identifier (\.name) – it knows there will be an id property and that it will be unique, because that’s the point of the Identifiable protocol
+                    ForEach(expenses.items) { item in
+                        if item.type == "Business" {
+                            ExpensesItemUI(item: item)
                         }
-                        Spacer()
-                        Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
                     }
+                    .onDelete(perform: { indexSet in
+                        expenses.items.remove(atOffsets: indexSet)
+                    }) // *other way to remove items of a list using function instead of closures
                 }
-                .onDelete(perform: { indexSet in
-                    expenses.items.remove(atOffsets: indexSet)
-                }) // *other way to remove items of a list using function instead of closures
+                
+                Section("Personal Expenses") {
+                    ForEach(expenses.items) { item in
+                        if item.type == "Personal" {
+                            ExpensesItemUI(item: item)
+                        }
+                    }
+                    .onDelete(perform: { indexSet in
+                        expenses.items.remove(atOffsets: indexSet)
+                    })
+                }
+                
             }
-            .navigationTitle("iExpenses")
+            .navigationTitle("iExpenses - Bruno")
             .toolbar {
+                Button ("Other way to Filter Expenses", systemImage: "list.bullet.clipboard"){
+                    showingOtherWaytoFilter.toggle()
+                }
+                
                 Button ("Add Expenses", systemImage: "plus") {
                     showingAddExpense.toggle()
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: expenses)
+            }
+            .sheet(isPresented: $showingOtherWaytoFilter){
+                otherWayToFilterExpenses()
             }
         }
         .padding()
@@ -63,6 +77,7 @@ struct ContentView: View {
     /*func removeItems(at offsets: IndexSet) {
         expenses.items.remove(atOffsets: offsets)
     }*/
+
 }
 
 #Preview {

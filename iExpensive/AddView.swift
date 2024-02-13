@@ -15,6 +15,7 @@ struct AddView: View {
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
+    @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
     
     var expenses: Expenses
     
@@ -31,7 +32,7 @@ struct AddView: View {
                     }
                 }
                 
-                TextField("Amount:", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "BRL"))
+                TextField("Amount:", value: $amount, format: .currency(code: localCurrency))
                     .keyboardType(.decimalPad)
                 
             }
@@ -42,6 +43,10 @@ struct AddView: View {
                     expenses.items.append(item)
                     dismiss()
                     //calling dismiss() when we want the view to dismiss itself. This causes the showingAddExpense Boolean in ContentView to go back to false, and hides the AddView.
+                }
+                Spacer()
+                Button("Exit Withou Saving", systemImage: "xmark.circle"){
+                    dismiss()
                 }
             }
         }
