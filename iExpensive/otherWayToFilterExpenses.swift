@@ -49,10 +49,14 @@ struct otherWayToFilterExpenses: View {
     /*funcs to call delete method based on personal or business items*/
     func removePersonalItems(at offsets: IndexSet) {
         removeItems(at: offsets, in: expenses.personalItems)
+        //removing item on primary array too
+        //removeItems(at: offsets, in: expenses.items)
     }
     
     func removeBusinessItems(at offsets: IndexSet) {
         removeItems(at: offsets, in: expenses.businessItems)
+        //removing item on primary array too
+        //expenses.items.remove(atOffsets: offsets)
     }
 }
 

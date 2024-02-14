@@ -35,8 +35,8 @@ struct ContentView: View {
                             ExpensesItemUI(item: item)
                         }
                     }
-                    .onDelete(perform: { indexSet in
-                        expenses.items.remove(atOffsets: indexSet)
+                    .onDelete(perform: { offset in
+                        expenses.items.remove(atOffsets: offset)
                     }) // *other way to remove items of a list using function instead of closures
                 }
                 
@@ -46,8 +46,8 @@ struct ContentView: View {
                             ExpensesItemUI(item: item)
                         }
                     }
-                    .onDelete(perform: { indexSet in
-                        expenses.items.remove(atOffsets: indexSet)
+                    .onDelete(perform: { offset in
+                        expenses.items.remove(atOffsets: offset)
                     })
                 }
                 
