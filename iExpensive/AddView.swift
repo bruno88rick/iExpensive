@@ -12,7 +12,9 @@ struct AddView: View {
     //creating an property wraper for this view to dismiss the view
     @Environment(\.dismiss) var dismiss
     
-    @State private var name = ""
+    //Challange Day 46:
+    @State private var name = "Expense Title"
+    
     @State private var type = "Personal"
     @State private var amount = 0.0
     @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
@@ -23,10 +25,9 @@ struct AddView: View {
     
     var body: some View {
         NavigationStack {
-            //Form {
-            //Challange 1 - Day 46:
-            NavigationLink("Tap to Insert") {
-                TextField("Enter a name for the Expense:", text: $name)
+            Form {
+                //Challange Day 46:
+                //TextField("Enter a name for the Expense:", text: $name)
                 
                 Picker ("Type", selection: $type) {
                     ForEach(types, id: \.self) {
@@ -38,8 +39,11 @@ struct AddView: View {
                     .keyboardType(.decimalPad)
                 
             }
-            .navigationTitle("Add new Expense")
+            //Challange Day 46:
+            .navigationTitle($name)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
+            
             .toolbar {
                 Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
                     let item = ExpenseItem(name: name, type: type, amount: amount)

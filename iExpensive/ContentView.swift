@@ -24,7 +24,6 @@ struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var showingAddExpense = false
     @State private var showingOtherWaytoFilter = false
-    //Challange day 46:
     @State private var issueName = "iExpenses-Bruno"
     
     var body: some View {
@@ -54,18 +53,26 @@ struct ContentView: View {
                 }
                 
             }
-            //Challange day 46:
             .navigationTitle($issueName)
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationBarTitleDisplayMode(.inline)
             
             .toolbar {
                 Button ("Other way to Filter Expenses", systemImage: "list.bullet.clipboard"){
                     showingOtherWaytoFilter.toggle()
                 }
                 
-                Button ("Add Expenses", systemImage: "plus") {
+                //Challange Day 46:
+                /*Button ("Add Expenses", systemImage: "plus") {
                     showingAddExpense.toggle()
+                }*/
+                
+                //Challange Day 46:
+                NavigationLink{
+                    AddView(expenses: expenses)
+                }label: {
+                    Label("Add Expenses", systemImage: "plus")
                 }
+                
             }
             .sheet(isPresented: $showingAddExpense) {
                 AddView(expenses: expenses)
