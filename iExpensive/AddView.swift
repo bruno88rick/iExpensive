@@ -23,7 +23,9 @@ struct AddView: View {
     
     var body: some View {
         NavigationStack {
-            Form {
+            //Form {
+            //Challange 1 - Day 46:
+            NavigationLink("Tap to Insert") {
                 TextField("Enter a name for the Expense:", text: $name)
                 
                 Picker ("Type", selection: $type) {
@@ -37,6 +39,7 @@ struct AddView: View {
                 
             }
             .navigationTitle("Add new Expense")
+            .navigationBarBackButtonHidden()
             .toolbar {
                 Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
                     let item = ExpenseItem(name: name, type: type, amount: amount)
@@ -45,7 +48,7 @@ struct AddView: View {
                     //calling dismiss() when we want the view to dismiss itself. This causes the showingAddExpense Boolean in ContentView to go back to false, and hides the AddView.
                 }
                 Spacer()
-                Button("Exit Withou Saving", systemImage: "xmark.circle"){
+                Button("Exit Without Saving", systemImage: "xmark.circle"){
                     dismiss()
                 }
             }

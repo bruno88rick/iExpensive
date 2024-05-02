@@ -15,7 +15,7 @@ struct otherWayToFilterExpenses: View {
     
     var body: some View {
         NavigationStack {
-            List {
+            Form {
                 //to do the filter way of Paul challange (Third challange)
                 ExpensesSectionPaulWayUI(title: "Business", expenses: expenses.businessItems, deleteItems: removeBusinessItems)
             

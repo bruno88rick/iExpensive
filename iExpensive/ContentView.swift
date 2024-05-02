@@ -24,6 +24,8 @@ struct ContentView: View {
     @State private var expenses = Expenses()
     @State private var showingAddExpense = false
     @State private var showingOtherWaytoFilter = false
+    //Challange day 46:
+    @State private var issueName = "iExpenses-Bruno"
     
     var body: some View {
         NavigationStack {
@@ -52,7 +54,10 @@ struct ContentView: View {
                 }
                 
             }
-            .navigationTitle("iExpenses - Bruno")
+            //Challange day 46:
+            .navigationTitle($issueName)
+            .navigationBarTitleDisplayMode(.inline)
+            
             .toolbar {
                 Button ("Other way to Filter Expenses", systemImage: "list.bullet.clipboard"){
                     showingOtherWaytoFilter.toggle()

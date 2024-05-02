@@ -21,7 +21,7 @@ class Expenses {
 
      1- Attempt to read the “Items” key from UserDefaults.
      2- Create an instance of JSONDecoder, which is the counterpart of JSONEncoder that lets us go from JSON data to Swift objects.
-     3- Ask the decoder to convert the data we received from UserDefaults into an array of ExpenseItem objects.
+     3- Ask the decoder to convert the data we received from UserDefaults into an array of ExpenseIt seem objects.
      4- If that worked, assign the resulting array to items and exit.
      5- Otherwise, set items to be an empty array
      
