@@ -43,17 +43,21 @@ struct AddView: View {
             .navigationTitle($name)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
-            
             .toolbar {
-                Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
-                    let item = ExpenseItem(name: name, type: type, amount: amount)
-                    expenses.items.append(item)
-                    dismiss()
-                    //calling dismiss() when we want the view to dismiss itself. This causes the showingAddExpense Boolean in ContentView to go back to false, and hides the AddView.
+                //Challange Day 46:
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
+                        let item = ExpenseItem(name: name, type: type, amount: amount)
+                        expenses.items.append(item)
+                        dismiss()
+                        //calling dismiss() when we want the view to dismiss itself. This causes the showingAddExpense Boolean in ContentView to go back to false, and hides the AddView.
+                    }
                 }
-                Spacer()
-                Button("Exit Without Saving", systemImage: "xmark.circle"){
-                    dismiss()
+                //Challange Day 46:
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Exit Without Saving", systemImage: "xmark.circle"){
+                        dismiss()
+                    }
                 }
             }
         }

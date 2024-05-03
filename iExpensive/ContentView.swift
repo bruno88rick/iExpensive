@@ -22,7 +22,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var expenses = Expenses()
-    @State private var showingAddExpense = false
+    //chalange 46 change:
+    //@State private var showingAddExpense = false
     @State private var showingOtherWaytoFilter = false
     @State private var issueName = "iExpenses-Bruno"
     
@@ -72,16 +73,17 @@ struct ContentView: View {
                 }label: {
                     Label("Add Expenses", systemImage: "plus")
                 }
-                
             }
-            .sheet(isPresented: $showingAddExpense) {
-                AddView(expenses: expenses)
-            }
+            //chalange 46 change:
+            //.sheet(isPresented: $showingAddExpense) {
+              //  AddView(expenses: expenses)
+            //}
             .sheet(isPresented: $showingOtherWaytoFilter){
                 otherWayToFilterExpenses()
             }
         }
         .padding()
+        .ignoresSafeArea()
     }
     
     // *remove items of a list using function, instead of clousures:
