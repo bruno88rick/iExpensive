@@ -26,6 +26,7 @@ struct ContentView: View {
     //@State private var showingAddExpense = false
     @State private var showingOtherWaytoFilter = false
     @State private var issueName = "iExpenses-Bruno"
+    let appData = AppData()
     
     var body: some View {
         NavigationStack {
@@ -53,6 +54,10 @@ struct ContentView: View {
                     })
                 }
                 
+                Section ("App Information") {
+                    Text("Version: \(appData.releaseVersion) Type: \(appData.releaseType)")
+                        .font(.caption)
+                }
             }
             .navigationTitle($issueName)
             //.navigationBarTitleDisplayMode(.inline)
