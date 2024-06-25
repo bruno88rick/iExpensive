@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ExpensesSectionPaulWayUI: View {
-    
-    //to do the filter way of Paul challange (Third challange)
+
     let title: String
     let expenses: [ExpenseItem]
     let deleteItems: (IndexSet) -> Void

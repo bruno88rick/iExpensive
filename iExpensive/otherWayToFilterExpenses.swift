@@ -16,7 +16,6 @@ struct otherWayToFilterExpenses: View {
     var body: some View {
         NavigationStack {
             Form {
-                //to do the filter way of Paul challange (Third challange)
                 ExpensesSectionPaulWayUI(title: "Business", expenses: expenses.businessItems, deleteItems: removeBusinessItems)
             
                 ExpensesSectionPaulWayUI(title: "Personal", expenses: expenses.personalItems, deleteItems: removePersonalItems)
@@ -30,9 +29,6 @@ struct otherWayToFilterExpenses: View {
         }
         .padding()
     }
-    //to do the filter way of Paul challange (Third challange)
-    
-    /*func to find the object to delete basing on an offset passed in and an array, that is personal or bussiness array created */
     func removeItems(at offsets: IndexSet, in inputArray: [ExpenseItem]) {
         var objectsToDelete = IndexSet()
         
@@ -45,18 +41,13 @@ struct otherWayToFilterExpenses: View {
         }
         expenses.items.remove(atOffsets: objectsToDelete)
     }
-    
-    /*funcs to call delete method based on personal or business items*/
+
     func removePersonalItems(at offsets: IndexSet) {
         removeItems(at: offsets, in: expenses.personalItems)
-        //removing item on primary array too
-        //removeItems(at: offsets, in: expenses.items)
     }
     
     func removeBusinessItems(at offsets: IndexSet) {
         removeItems(at: offsets, in: expenses.businessItems)
-        //removing item on primary array too
-        //expenses.items.remove(atOffsets: offsets)
     }
 }
 
