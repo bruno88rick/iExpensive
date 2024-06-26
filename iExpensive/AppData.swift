@@ -8,7 +8,7 @@
 import Foundation
 
 class AppData {
-    let releaseVersion = "v0.1.0"
+    let releaseVersion = "v0.1.1"
     let releaseType = "Alfa"
     let developerName = "Bruno Ricardo"
     let developerCompany = "Include Systems"
