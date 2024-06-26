@@ -19,13 +19,13 @@ struct AddView: View {
     @Environment(\.dismiss) var dismiss
     @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
     
-    let types = ["Business", "Personal"]
+    static let types = ["Business", "Personal"]
     
     var body: some View {
         NavigationStack {
             Form {
                 Picker ("Type", selection: $type) {
-                    ForEach(types, id: \.self) {
+                    ForEach(Self.types, id: \.self) {
                         Text($0)
                     }
                 }

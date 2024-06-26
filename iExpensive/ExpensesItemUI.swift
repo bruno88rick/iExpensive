@@ -17,25 +17,35 @@ struct ExpensesItemUI: View {
     
     var body: some View {
         NavigationStack {
-            List(expenses) { expense in
-                NavigationLink(value: expense) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(expense.name)
-                                .font(.headline.bold())
-                            Text(expense.type)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+            List {
+                ForEach(expenses) { expense in
+                    NavigationLink(value: expense) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(expense.name)
+                                    .font(.headline.bold())
+                                Text(expense.type)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Text(expense.amount, format: .currency(code: localCurrency))
+                                .style(for: expense)
                         }
-                        Spacer()
-                        Text(expense.amount, format: .currency(code: localCurrency))
-                            .style(for: expense)
                     }
                 }
+                .onDelete(perform: deleteItems)
             }
             .navigationDestination(for: ExpenseItem.self) { expense in
                 ExpenseDetailView(expense: expense)
             }
+        }
+    }
+    
+    func deleteItems(at offsets: IndexSet) {
+        for offset in offsets {
+            let item = expenses[offset]
+            modelContext.delete(item)
         }
     }
     
@@ -44,12 +54,6 @@ struct ExpensesItemUI: View {
             expense.type == typeToFilter || typeToFilter == "All Expenses"
         }, sort: sortOrder)
     }
-    
-    /*func addSample() {
-        let expenseSample = ExpenseItem(name: "Example Expense", type: "Personal", amount: 100.00)
-        modelContext.insert(expenseSample)
-    }*/
-    
 }
 
 #Preview {

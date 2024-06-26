@@ -14,6 +14,7 @@ struct ContentView: View {
     @Query var expense: [ExpenseItem]
     @State private var showingOtherWaytoFilter = false
     @State private var showingAddView = false
+    @State private var showingDeleteAllAlert = false
     @State private var filterBy = "All Expenses"
     @State private var issueName = "iExpenses-Bruno"
     let appData = AppData()
@@ -31,10 +32,22 @@ struct ContentView: View {
                     .font(.caption)
             }
             .navigationTitle($issueName)
+            .alert("Delete All?", isPresented: $showingDeleteAllAlert) {
+                Button("Yes, Delete All", role: .destructive) {
+                    deleteAll()
+                }
+                Button("No! My Mistake", role: .cancel) { }
+            } message: {
+                Text("""
+                     Do you really want to delete all Expenses?
+                     
+                     Obs.: To delete just one, swipe to left on the list.
+                     """)
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Delete all", systemImage: "trash") {
-                        deleteAll()
+                        showingDeleteAllAlert.toggle()
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -66,12 +79,13 @@ struct ContentView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu("Filter", systemImage: "line.3.horizontal.decrease.circle") {
                         Picker("Filter By", selection: $filterBy) {
-                            Text("Show Only Personal")
-                                .tag("Personal")
-                            Text("Show Only Business")
-                                .tag("Business")
                             Text("Show All Expenses")
                                 .tag("All Expenses")
+                            Divider()
+                            ForEach(AddView.types, id: \.self) { type in
+                                Text("Show Only \(type)")
+                                    .tag(type)
+                            }
                         }
                     }
                 }
