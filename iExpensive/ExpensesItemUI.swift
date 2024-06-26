@@ -5,28 +5,54 @@
 //  Created by Bruno Oliveira on 13/02/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ExpensesItemUI: View {
-    @State var item: ExpenseItem
+    
+    @Environment (\.modelContext) var modelContext
+    @Query var expenses: [ExpenseItem]
+    
     @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(item.name)
-                    .font(.headline.bold())
-                Text(item.type)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+        NavigationStack {
+            List(expenses) { expense in
+                NavigationLink(value: expense) {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(expense.name)
+                                .font(.headline.bold())
+                            Text(expense.type)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Text(expense.amount, format: .currency(code: localCurrency))
+                            .style(for: expense)
+                    }
+                }
             }
-            Spacer()
-            Text(item.amount, format: .currency(code: localCurrency))
-                .style(for: item)
+            .navigationDestination(for: ExpenseItem.self) { expense in
+                ExpenseDetailView(expense: expense)
+            }
         }
     }
+    
+    init(typeToFilter: String, sortOrder: [SortDescriptor<ExpenseItem>]) {
+        _expenses = Query(filter: #Predicate<ExpenseItem> { expense in
+            expense.type == typeToFilter || typeToFilter == "All Expenses"
+        }, sort: sortOrder)
+    }
+    
+    /*func addSample() {
+        let expenseSample = ExpenseItem(name: "Example Expense", type: "Personal", amount: 100.00)
+        modelContext.insert(expenseSample)
+    }*/
+    
 }
 
 #Preview {
-    ExpensesItemUI(item: ExpenseItem(name: "Teste", type: "Personal", amount: 0.0))
+    ExpensesItemUI(typeToFilter: "Personal", sortOrder: [SortDescriptor(\ExpenseItem.name), SortDescriptor(\ExpenseItem.type)])
+        .modelContainer(for: ExpenseItem.self)
 }

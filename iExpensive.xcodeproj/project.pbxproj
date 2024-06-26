@@ -11,6 +11,7 @@
 		B62B1F172B779A9E00B99899 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62B1F162B779A9E00B99899 /* ContentView.swift */; };
 		B62B1F192B779AA200B99899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B62B1F182B779AA200B99899 /* Assets.xcassets */; };
 		B62B1F1C2B779AA200B99899 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B62B1F1B2B779AA200B99899 /* Preview Assets.xcassets */; };
+		B64141102C2B8F1A00A259CF /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B641410F2C2B8F1A00A259CF /* ExpenseDetailView.swift */; };
 		B66219A72B7BAAC9008658D9 /* ExpensesItemUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66219A62B7BAAC9008658D9 /* ExpensesItemUI.swift */; };
 		B66219A92B7BBC0B008658D9 /* View-ExpenseStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66219A82B7BBC0B008658D9 /* View-ExpenseStyle.swift */; };
 		B66219AB2B7BC0DD008658D9 /* otherWayToFilterExpenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66219AA2B7BC0DD008658D9 /* otherWayToFilterExpenses.swift */; };
@@ -27,6 +28,7 @@
 		B62B1F162B779A9E00B99899 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B62B1F182B779AA200B99899 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B62B1F1B2B779AA200B99899 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B641410F2C2B8F1A00A259CF /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
 		B66219A62B7BAAC9008658D9 /* ExpensesItemUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesItemUI.swift; sourceTree = "<group>"; };
 		B66219A82B7BBC0B008658D9 /* View-ExpenseStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-ExpenseStyle.swift"; sourceTree = "<group>"; };
 		B66219AA2B7BC0DD008658D9 /* otherWayToFilterExpenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = otherWayToFilterExpenses.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				B6EC10102B77C21100E2F836 /* ExpenseItem.swift */,
 				B6B0D2062C2B21F700E1521B /* AppData.swift */,
 				B66219A62B7BAAC9008658D9 /* ExpensesItemUI.swift */,
+				B641410F2C2B8F1A00A259CF /* ExpenseDetailView.swift */,
 				B66219A82B7BBC0B008658D9 /* View-ExpenseStyle.swift */,
 				B62B1F182B779AA200B99899 /* Assets.xcassets */,
 				B62B1F1A2B779AA200B99899 /* Preview Content */,
@@ -169,6 +172,7 @@
 				B66219A92B7BBC0B008658D9 /* View-ExpenseStyle.swift in Sources */,
 				B66219A72B7BAAC9008658D9 /* ExpensesItemUI.swift in Sources */,
 				B6EC10112B77C21100E2F836 /* ExpenseItem.swift in Sources */,
+				B64141102C2B8F1A00A259CF /* ExpenseDetailView.swift in Sources */,
 				B62B1F152B779A9E00B99899 /* iExpensiveApp.swift in Sources */,
 				B6B0D2072C2B21F800E1521B /* AppData.swift in Sources */,
 			);

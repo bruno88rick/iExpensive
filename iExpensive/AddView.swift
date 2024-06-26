@@ -5,17 +5,19 @@
 //  Created by Bruno Oliveira on 10/02/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct AddView: View {
+    @Environment(\.modelContext) var modelContext
+    @Query var expenses: [ExpenseItem]
+    
+    @State private var type = "Personal"
+    @State private var name = "New Expense"
+    @State private var amount = 100.00
     
     @Environment(\.dismiss) var dismiss
-    @State private var name = "Expense Title"
-    @State private var type = "Personal"
-    @State private var amount = 0.0
     @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
-    
-    var expenses: Expenses
     
     let types = ["Business", "Personal"]
     
@@ -34,17 +36,16 @@ struct AddView: View {
             }
             .navigationTitle($name)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden()
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save", systemImage: "square.and.arrow.down.on.square.fill"){
-                        let item = ExpenseItem(name: name, type: type, amount: amount)
-                        expenses.items.append(item)
+                ToolbarItem(placement: .topBarTrailing){
+                    Button("Save") {
+                        let expense = ExpenseItem(name: name, type: type, amount: amount)
+                        modelContext.insert(expense)
                         dismiss()
                     }
                 }
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Exit Without Saving", systemImage: "xmark.circle"){
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel", role: .cancel){
                         dismiss()
                     }
                 }
@@ -54,5 +55,5 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView()
 }

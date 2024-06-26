@@ -5,11 +5,20 @@
 //  Created by Bruno Oliveira on 10/02/24.
 //
 
+import SwiftData
 import Foundation
 
-struct ExpenseItem: Identifiable, Codable, Equatable {
+@Model
+class ExpenseItem: Identifiable {
     var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
+    var name: String
+    var type: String
+    var amount: Double
+    
+    init(name: String, type: String, amount: Double) {
+        self.name = name
+        self.type = type
+        self.amount = amount
+    }
+    
 }

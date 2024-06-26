@@ -5,7 +5,7 @@
 //  Created by Bruno Oliveira on 10/02/24.
 //
 
-import Foundation
+/*import Foundation
 
 @Observable
 class Expenses {
@@ -37,4 +37,4 @@ class Expenses {
         items.filter {$0.type == "Business"}
     }
     
-}
+}*/
