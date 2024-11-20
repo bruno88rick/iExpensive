@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddView: View {
     @Environment(\.modelContext) var modelContext
-    @Query var expenses: [ExpenseItem]
+    //@Query var expenses: [ExpenseItem]
     
     @State private var type = "Personal"
     @State private var name = "New Expense"
