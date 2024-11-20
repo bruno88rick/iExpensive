@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ExpensesItemUI: View {
     
-    @Environment (\.modelContext) var modelContext
+    @Environment(\.modelContext) var modelContext
     @Query var expenses: [ExpenseItem]
     
     @State private var localCurrency = Locale.current.currency?.identifier ?? "BRL"
@@ -32,6 +32,9 @@ struct ExpensesItemUI: View {
                             Text(expense.amount, format: .currency(code: localCurrency))
                                 .style(for: expense)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(expense.name), \(expense.amount.formatted(.currency(code: localCurrency)))")
+                        .accessibilityHint("\(expense.type)")
                     }
                 }
                 .onDelete(perform: deleteItems)
